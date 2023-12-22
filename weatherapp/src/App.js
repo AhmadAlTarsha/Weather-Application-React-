@@ -1,9 +1,9 @@
 
 import './App.css';
-
+import CurrentWeather from './componenet/CurrentWeather';
 function App() {
   return (
-   <hi>ahmad</hi>
+  <CurrentWeather/>
    
   );
 }
