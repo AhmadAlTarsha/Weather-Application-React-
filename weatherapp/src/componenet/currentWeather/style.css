@@ -1,0 +1,56 @@
+#m-s-c {
+    /* Add your main container styles here */
+    font-family: 'Arial', sans-serif;
+    /* Add other styling properties as needed */
+  }
+  
+  #currentLocationSection {
+    /* Add styles for the current location section */
+  }
+  
+  #searchContainer {
+    /* Add styles for the search container */
+  }
+  
+  #img-container {
+    /* Add styles for the weather icon container */
+  }
+  
+  #weatherIcon {
+    /* Add styles for the weather icon */
+    max-width: 100px; /* Example: Limit the width of the weather icon */
+  }
+  
+  #temperature {
+    /* Add styles for the temperature */
+    font-size: 2rem; /* Example: Increase the font size */
+    color: #333; /* Example: Change the text color */
+  }
+  
+  #currentLocation, #currentCity {
+    /* Add styles for the current location and city */
+  }
+  
+  #H-W-C {
+    /* Add styles for the humidity and wind container */
+    display: flex; /* Example: Use flexbox for layout */
+    justify-content: space-between; /* Example: Add space between humidity and wind sections */
+  }
+  
+  #humidity, #wind {
+    /* Add styles for the humidity and wind sections */
+    text-align: center; /* Example: Center align text */
+  }
+  
+  #humidityVal, #windVal {
+    /* Add styles for the humidity and wind values */
+    font-size: 1.5rem; /* Example: Adjust font size */
+  }
+  
+  #humidityWord, #windWord {
+    /* Add styles for the humidity and wind labels */
+    font-size: 1rem; /* Example: Adjust font size */
+    color: #777; /* Example: Change label color */
+  }
+  
+  

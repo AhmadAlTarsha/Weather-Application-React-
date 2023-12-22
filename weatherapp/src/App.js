@@ -9,14 +9,17 @@ import { useState ,createContext,useEffect, } from "react";
 export const AppContext = createContext();
 
 function App() {
+navigator.geolocation.
+
   return (
-    <AppContext.Provider >
+    <div className='main-screen' > <AppContext.Provider >
     <NavBar ></NavBar>
     <Routes>
-
+    <Route path="/CurrentWeather" element={<CurrentWeather/>} />
 
    </Routes>
-  </AppContext.Provider>
+  </AppContext.Provider></div>
+   
   );
 }
 
