@@ -12,14 +12,15 @@ function App() {
 
 
   return (
-    <div className='main-screen' >
+   
        <AppContext.Provider  >
-    <NavBar ></NavBar>
+    {/* <NavBar ></NavBar>
     <Routes>
     <Route path="/CurrentWeather" element={<CurrentWeather/>} />
 
-   </Routes>
-  </AppContext.Provider></div>
+   </Routes> */}
+   <CurrentWeather/>
+  </AppContext.Provider>
    
   );
 }

@@ -1,56 +1,127 @@
-#m-s-c {
-    /* Add your main container styles here */
-    font-family: 'Arial', sans-serif;
-    /* Add other styling properties as needed */
+#main-screen-con {
+   display: flex;
+   flex-direction: column;
+align-items: center;
+justify-content: center;
+  width: 100%;
+    height: 90vb;
+background-color: rgb(26, 108, 159);
+   
+ 
+  
+  }
+ #all-info-con{
+    padding: 1%;
+    display: flex;
+    align-items: center;
+   
+    width:90%;
+    height: 90%;
+   background-color: white;
+gap: 2%;
+    border: 1px solid;
+    border-radius: 13px;
+ }
+ #current-weather-con{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   width: 60%;
+   height: 85%;
+   background-color: white;
+    gap: 2%;
+    padding: 5%;
+    
+}
+#current-location-image-con{
+    height: auto;
+     display: flex;
+     flex-direction: row;
+   width: 93%;
+   justify-content: space-between;
+   align-items: center;
+
+}
+ #temp-location{
+   
+display: flex;
+flex-direction: column;
+gap: 3%;
+ }
+
+ #wind-humidity-con{
+    width: 98%;
+    height: 55%;
+   
+    border-radius: 13px;
+    background-image: linear-gradient(to bottom right,#e1e5ec,#909193);
+ }
+  #forecast-con{
+    background-image: linear-gradient(to bottom right,#aaacae,#363636);
+    width: 40%;
+    height: 85%;
+    
+    border-radius: 13px;
   }
   
+  
+  /* 
+
+
+  
   #currentLocationSection {
-    /* Add styles for the current location section */
+    display: flex;
+flex-direction: column;
+align-items: center;
+  border: 1px solid;
+   border-radius: 10px;
+   padding: 3px;
   }
   
   #searchContainer {
-    /* Add styles for the search container */
+   
   }
   
   #img-container {
-    /* Add styles for the weather icon container */
+   
   }
   
   #weatherIcon {
-    /* Add styles for the weather icon */
-    max-width: 100px; /* Example: Limit the width of the weather icon */
+
+    max-width: 100px; 
   }
   
   #temperature {
-    /* Add styles for the temperature */
-    font-size: 2rem; /* Example: Increase the font size */
-    color: #333; /* Example: Change the text color */
+  
+    font-size: 2rem; 
+    color: #333;
   }
   
   #currentLocation, #currentCity {
-    /* Add styles for the current location and city */
+   
   }
   
   #H-W-C {
-    /* Add styles for the humidity and wind container */
-    display: flex; /* Example: Use flexbox for layout */
-    justify-content: space-between; /* Example: Add space between humidity and wind sections */
+width: 70%;
+    display: flex; 
+    justify-content: space-between;
+    height: auto;
   }
   
   #humidity, #wind {
-    /* Add styles for the humidity and wind sections */
-    text-align: center; /* Example: Center align text */
+   
+    text-align: center; 
   }
   
   #humidityVal, #windVal {
-    /* Add styles for the humidity and wind values */
-    font-size: 1.5rem; /* Example: Adjust font size */
+    margin: 0;
+    font-size: 1.5rem; 
   }
   
   #humidityWord, #windWord {
-    /* Add styles for the humidity and wind labels */
-    font-size: 1rem; /* Example: Adjust font size */
-    color: #777; /* Example: Change label color */
+  margin: 0;
+    font-size: 1rem; 
+    color: #777; 
   }
   
-  
+   */

@@ -6,7 +6,7 @@ import { AppContext } from '../../App';
 
 
 const CurrentWeather = () => {
-  const [userLocation, setUserLocation] = useState()
+  const [currentWeather, setCurrentWeather] = useState()
 
   const getCurrentLocation = async () => {
     return await new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ const CurrentWeather = () => {
 
   const callAxios = async (lat, lang, cityName) => {
 
-    let url = ''
+    let url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={API key}'
 
     if (cityName) {
       url = ``
@@ -28,7 +28,7 @@ const CurrentWeather = () => {
     }
     try {
       const result = await axios.get(url)
-      setUserLocation(result.data)
+      setCurrentWeather(result.data)
       console.log("RES ====> ", result);
 
     } catch (error) {
@@ -55,45 +55,49 @@ const CurrentWeather = () => {
 
 
 
-
-
+// 
 
   return (
-    <div id="m-s-c">
-      <section id="currentLocationSection">
-        <div id="searchContainer">
+    <div id="main-screen-con">
+      <div id="all-info-con">
+    
+  <div id="current-weather-con">
+       <div id='current-location-image-con' >
+        <section id='temp-location'><h1>{currentWeather?.sys.country}
+        </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
+        <div>{<img src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`}/>}</div>
+       </div>
+      
+       <div id='wind-humidity-con'>
 
+       </div>
         </div>
-
-
-        <div id="img-container">
-          <img
-
-          />
+        <div id="forecast-con">
         </div>
+      
 
 
-        <h1 id="temperature">{Math.round(userLocation?.main?.temp)}</h1>
+        {/* <h1 id="temperature">{Math.round(currentWeather?.main?.temp)}</h1>
 
 
-        <h1 id="currentLocation">location</h1>
-        <h3 id="currentCity">city</h3>
+        <h1 id="currentLocation">{currentWeather?.sys.country}</h1>
+        <h3 id="currentCity">{currentWeather?.name}</h3>
 
 
         <div id="H-W-C">
 
           <section id="humidity">
-            <h1 id="humidityVal">humidity%`</h1>
+            <h1 id="humidityVal">{`${currentWeather?.main?.humidity}%`}</h1>
             <h3 id="humidityWord">Humidity</h3>
           </section>
 
 
           <section id="wind">
-            <h1 id="windVal">{`speed km/h`}</h1>
+            <h1 id="windVal">{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h1>
             <h3 id="windWord">Wind Speed</h3>
           </section>
-        </div>
-      </section>
+        </div> */}
+      </div>
     </div>
   );
 };
