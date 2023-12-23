@@ -1,15 +1,17 @@
 import { React, useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import "./style.css"
-import { FaTemperatureArrowUp,FaTemperatureArrowDown  } from "react-icons/fa6"
+import { FaTemperatureArrowUp, FaTemperatureArrowDown } from "react-icons/fa6"
 import { MdOutlineDescription } from "react-icons/md";
-import { WiHumidity,WiStrongWind,WiBarometer  } from "react-icons/wi";
+import { WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
 import { AppContext } from '../../App';
 
 
 
 const CurrentWeather = () => {
   const [currentWeather, setCurrentWeather] = useState()
+  const [currentCity, setCurrentCity] = useState()
+  const [forecast, setForecast] = useState()
 
   const getCurrentLocation = async () => {
     return await new Promise((resolve, reject) => {
@@ -19,21 +21,33 @@ const CurrentWeather = () => {
       );
     });
   }
+  const getForecast=async(currentCity)=>{
+   await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
+      console.log(res?.data?.forecast );
+      setForecast(res?.data?.forecast)
+    }).catch((err)=>{
+      console.log(err);
+    })
 
-  const callAxios = async (lat, lang, cityName) => {
+  }
 
-    let url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={API key}'
+  const callAxios = async (lat, lang) => {
 
-    if (cityName) {
-      url = ``
-    } else {
-      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
-    }
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
+
+  
+   
+    
     try {
       const result = await axios.get(url)
       setCurrentWeather(result.data)
       console.log("RES ====> ", result);
+      getForecast(result?.data?.name)
+     // setCurrentCity(result?.data?.name)
 
+//     
+
+// setForecast(forecast.data)
     } catch (error) {
       console.error("ERROR ====> ", error.response);
     }
@@ -42,9 +56,11 @@ const CurrentWeather = () => {
 
 
   useEffect(() => {
+
     getCurrentLocation()
       .then(async (position) => {
         await callAxios(position?.coords?.latitude, position?.coords?.longitude)
+
       })
       .catch((error) => {
         console.error("Error getting location: " + error.message);
@@ -53,12 +69,18 @@ const CurrentWeather = () => {
 
 
 
-
   }, [])
 
+const createDayForecast=()=>{
+ const day= forecast?.forecastday?.map((day)=>{
+ return   <section className='forecast-day-info'>
+<h3>{day?.date}</h3><img src={`${day?.day?.condition?.icon}`}/>
+    </section>
+    })
+return day
+}
 
 
-  // 
 
   return (
     <div id="main-screen-con">
@@ -75,19 +97,21 @@ const CurrentWeather = () => {
             <dvi id="m-m-h-con">
               <section id='max'><FaTemperatureArrowUp size={30} color='red' />  <h3>{`${Math.round(currentWeather?.main?.temp_max)}°C`}</h3></section>
               <section id='min'><FaTemperatureArrowDown size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.temp_min)}°C`}</h3></section>
-              <section id='humidity'><WiHumidity size={30}  /> <h3>{`${Math.round(currentWeather?.main?.temp_max)} %`}</h3></section>
+              <section id='humidity'><WiHumidity size={30} /> <h3>{`${Math.round(currentWeather?.main?.temp_max)} %`}</h3></section>
 
             </dvi>
             <dvi id="w-p-des-con">
-              <section id='w-speed'><WiStrongWind size={30} color='red'/>   <h3>{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h3></section>
-              <section id='pusher'><WiBarometer  size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.pressure)} hPa`}</h3></section>
+              <section id='w-speed'><WiStrongWind size={30} color='red' />   <h3>{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h3></section>
+              <section id='pusher'><WiBarometer size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.pressure)} hPa`}</h3></section>
               <section id='w-des'><MdOutlineDescription size={30} /> <h3>{currentWeather?.weather[0]?.description
-}</h3></section>
+              }</h3></section>
 
             </dvi>
           </div>
         </div>
         <div id="forecast-con">
+
+        {  createDayForecast()}
         </div>
 
 
