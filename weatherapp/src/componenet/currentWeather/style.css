@@ -19,7 +19,7 @@ background-color: rgb(26, 108, 159);
     height: 90%;
    background-color: white;
 gap: 2%;
-    border: 1px solid;
+  
     border-radius: 13px;
  }
  #current-weather-con{
@@ -49,12 +49,31 @@ flex-direction: column;
 gap: 3%;
  }
 
- #wind-humidity-con{
+ #rest-info-con{
+   align-items: center;
+    display: flex;
+    gap: 2%;
     width: 98%;
     height: 55%;
-   
+   padding: 2%;
     border-radius: 13px;
     background-image: linear-gradient(to bottom right,#e1e5ec,#909193);
+ }
+ #m-m-h-con,#w-p-des-con{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom right,#fcfdfe,#5f6060);
+    width: 45%;
+    height: 90%;
+    border-radius: 13px;
+    padding: 2%;
+ }
+ #max ,#min, #humidity,#w-des,#pusher,#w-speed{
+display: flex;
+
+align-items: center;
+gap: 2%;
  }
   #forecast-con{
     background-image: linear-gradient(to bottom right,#aaacae,#363636);

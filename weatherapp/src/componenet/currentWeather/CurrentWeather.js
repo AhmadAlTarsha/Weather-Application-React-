@@ -1,6 +1,9 @@
 import { React, useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import "./style.css"
+import { FaTemperatureArrowUp,FaTemperatureArrowDown  } from "react-icons/fa6"
+import { MdOutlineDescription } from "react-icons/md";
+import { WiHumidity,WiStrongWind,WiBarometer  } from "react-icons/wi";
 import { AppContext } from '../../App';
 
 
@@ -55,26 +58,38 @@ const CurrentWeather = () => {
 
 
 
-// 
+  // 
 
   return (
     <div id="main-screen-con">
       <div id="all-info-con">
-    
-  <div id="current-weather-con">
-       <div id='current-location-image-con' >
-        <section id='temp-location'><h1>{currentWeather?.sys.country}
-        </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
-        <div>{<img src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`}/>}</div>
-       </div>
-      
-       <div id='wind-humidity-con'>
 
-       </div>
+        <div id="current-weather-con">
+          <div id='current-location-image-con' >
+            <section id='temp-location'><h1>{currentWeather?.sys.country}
+            </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
+            <div>{<img src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`} />}</div>
+          </div>
+
+          <div id='rest-info-con'>
+            <dvi id="m-m-h-con">
+              <section id='max'><FaTemperatureArrowUp size={30} color='red' />  <h3>{`${Math.round(currentWeather?.main?.temp_max)}°C`}</h3></section>
+              <section id='min'><FaTemperatureArrowDown size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.temp_min)}°C`}</h3></section>
+              <section id='humidity'><WiHumidity size={30}  /> <h3>{`${Math.round(currentWeather?.main?.temp_max)} %`}</h3></section>
+
+            </dvi>
+            <dvi id="w-p-des-con">
+              <section id='w-speed'><WiStrongWind size={30} color='red'/>   <h3>{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h3></section>
+              <section id='pusher'><WiBarometer  size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.pressure)} hPa`}</h3></section>
+              <section id='w-des'><MdOutlineDescription size={30} /> <h3>{currentWeather?.weather[0]?.description
+}</h3></section>
+
+            </dvi>
+          </div>
         </div>
         <div id="forecast-con">
         </div>
-      
+
 
 
         {/* <h1 id="temperature">{Math.round(currentWeather?.main?.temp)}</h1>
