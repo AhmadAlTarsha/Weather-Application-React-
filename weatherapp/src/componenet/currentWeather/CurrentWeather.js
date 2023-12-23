@@ -6,12 +6,6 @@ import { AppContext } from '../../App';
 
 
 const CurrentWeather = () => {
-  //const { userLocation } = useContext(AppContext);
-
-  // console.log(userLocation);
-
-
-
   const [userLocation, setUserLocation] = useState()
 
   const getCurrentLocation = async () => {
@@ -30,11 +24,11 @@ const CurrentWeather = () => {
     if (cityName) {
       url = ``
     } else {
-      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406`
+      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
     }
     try {
       const result = await axios.get(url)
-setUserLocation(result.data)
+      setUserLocation(result.data)
       console.log("RES ====> ", result);
 
     } catch (error) {
@@ -48,12 +42,6 @@ setUserLocation(result.data)
     getCurrentLocation()
       .then(async (position) => {
         await callAxios(position?.coords?.latitude, position?.coords?.longitude)
-        // setUserLocation({
-        //   lat: position?.coords?.latitude,
-        //   long: position?.coords?.longitude
-
-        // })
-
       })
       .catch((error) => {
         console.error("Error getting location: " + error.message);
@@ -67,7 +55,7 @@ setUserLocation(result.data)
 
 
 
-console.log(userLocation);
+
 
 
   return (
@@ -85,7 +73,7 @@ console.log(userLocation);
         </div>
 
 
-        <h1 id="temperature">ahma{userLocation?.main?.humidity}</h1>
+        <h1 id="temperature">{Math.round(userLocation?.main?.temp)}</h1>
 
 
         <h1 id="currentLocation">location</h1>
