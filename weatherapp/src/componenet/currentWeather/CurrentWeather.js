@@ -74,7 +74,9 @@ const CurrentWeather = () => {
 const createDayForecast=()=>{
  const day= forecast?.forecastday?.map((day)=>{
  return   <section className='forecast-day-info'>
-<h3>{day?.date}</h3><img src={`${day?.day?.condition?.icon}`}/>
+<h3>{day?.date}</h3><img src={`${day?.day?.condition?.icon}`}/><p>{`Max ${Math.round(day?.day?.maxtemp_c)
+} °C / Min ${Math.round(day?.day?.mintemp_c)
+} °C `}</p>
     </section>
     })
 return day
@@ -89,6 +91,7 @@ return day
         <div id="current-weather-con">
           <div id='current-location-image-con' >
             <section id='temp-location'><h1>{currentWeather?.sys.country}
+            </h1><h1>{currentWeather?.name}
             </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
             <div>{<img src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`} />}</div>
           </div>
@@ -96,13 +99,13 @@ return day
           <div id='rest-info-con'>
             <dvi id="m-m-h-con">
               <section id='max'><FaTemperatureArrowUp size={30} color='red' />  <h3>{`${Math.round(currentWeather?.main?.temp_max)}°C`}</h3></section>
-              <section id='min'><FaTemperatureArrowDown size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.temp_min)}°C`}</h3></section>
+              <section id='min'><FaTemperatureArrowDown size={30} color='#4d7db6' /> <h3>{`${Math.round(currentWeather?.main?.temp_min)}°C`}</h3></section>
               <section id='humidity'><WiHumidity size={30} /> <h3>{`${Math.round(currentWeather?.main?.temp_max)} %`}</h3></section>
 
             </dvi>
             <dvi id="w-p-des-con">
               <section id='w-speed'><WiStrongWind size={30} color='red' />   <h3>{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h3></section>
-              <section id='pusher'><WiBarometer size={30} color='blue' /> <h3>{`${Math.round(currentWeather?.main?.pressure)} hPa`}</h3></section>
+              <section id='pusher'><WiBarometer size={30} color='#4d7db6' /> <h3>{`${Math.round(currentWeather?.main?.pressure)} hPa`}</h3></section>
               <section id='w-des'><MdOutlineDescription size={30} /> <h3>{currentWeather?.weather[0]?.description
               }</h3></section>
 
