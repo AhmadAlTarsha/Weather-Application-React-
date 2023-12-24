@@ -6,7 +6,7 @@ import { createContext, useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 
 export const AppContext = createContext();
-
+// root fun
 function App() {
   const [search,setSearch]=useState("")
   return (
