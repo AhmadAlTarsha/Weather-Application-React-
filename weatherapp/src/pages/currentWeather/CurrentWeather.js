@@ -4,7 +4,7 @@ import "./style.css"
 import { FaTemperatureArrowUp, FaTemperatureArrowDown } from "react-icons/fa6"
 import { MdOutlineDescription } from "react-icons/md";
 import { WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
-import { AppContext } from '../../App';
+
 
 
 
@@ -22,6 +22,8 @@ const CurrentWeather = () => {
       );
     });
   }
+
+  // call axios function
   const callAxios = async (lat, lang) => {
    
 
@@ -31,6 +33,7 @@ const CurrentWeather = () => {
    
     
     try {
+
       const result = await axios.get(url)
       setCurrentWeather(result?.data)
      
@@ -43,6 +46,8 @@ const CurrentWeather = () => {
 
   }
 
+
+  //get forecast from external api 
   const getForecast=async(currentCity)=>{
    await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
     
@@ -55,7 +60,7 @@ const CurrentWeather = () => {
 
 
 
-
+// this hook To execute what is inside it before the renderer
   useEffect(() => {
 
     getCurrentLocation()
@@ -73,6 +78,8 @@ const CurrentWeather = () => {
 
   }, [])
 
+
+  //this function to create next days container
 const CreateDayForecast=()=>{
  const day= forecast?.forecastday?.map((day,index)=>{
  return   <section className='forecast-day-info' key={index}>
