@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://cdn.discordapp.com/attachments/1154738995482329154/1162437439688822875/logo.png?ex=653bef3a&is=65297a3a&hm=51726b85c6da6e7302ac0b96700b20902404c4bfd65a72eae11d783c8a14df40&" target="_blank" rel="noopener noreferrer">
- <img width="200px" height="200px" src="https://cdn.discordapp.com/attachments/1154738995482329154/1162437439688822875/logo.png?ex=653bef3a&is=65297a3a&hm=51726b85c6da6e7302ac0b96700b20902404c4bfd65a72eae11d783c8a14df40&" alt="Project logo">
+
  </a>
 </p>
 
