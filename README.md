@@ -25,7 +25,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Visual Studio Code follow this <a href='https://code.visualstudio.com/download'>link</a> to install.
 - Git Bash follow this <a href='https://git-scm.com/downloads'>link</a> to install.
-- ReactJs follow this <a href='[https://www.mongodb.com/docs/manual/installation/](https://react.dev/learn/installation)'>link</a> to install.
+- ReactJs follow this <a href='https://react.dev/learn/installation'>link</a> to install.
 
 
 ### Installing:
