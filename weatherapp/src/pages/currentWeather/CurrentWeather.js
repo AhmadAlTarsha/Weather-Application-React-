@@ -83,7 +83,7 @@ const CurrentWeather = () => {
 const CreateDayForecast=()=>{
  const day= forecast?.forecastday?.map((day,index)=>{
  return   <section className='forecast-day-info' key={index}>
-<h4>{day?.date}</h4><img src={`${day?.day?.condition?.icon}`}/><p>{`Max ${Math.round(day?.day?.maxtemp_c)
+<h4>{day?.date}</h4><img src={`${day?.day?.condition?.icon}`}/><p className='p'>{`Max ${Math.round(day?.day?.maxtemp_c)
 } °C / Min ${Math.round(day?.day?.mintemp_c)
 } °C `}</p>
     </section>
@@ -100,10 +100,10 @@ return day
            <h2>current Weather</h2>
           <div id='current-location-image-con' >
            
-            <section id='temp-location'><h1>{currentWeather?.sys.country}
-            </h1><h1>{currentWeather?.name}
-            </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
-            <div>{<img src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`} />}</div>
+            <section id='temp-location'><h1 className='h1'>{currentWeather?.sys.country}
+            </h1 ><h1 className="h1" >{currentWeather?.name}
+            </h1><h1 className='h1'>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
+            <div>{<img id='c-w-img' src={`https://openweathermap.org/img/wn/${currentWeather?.weather[0].icon}@4x.png`} />}</div>
           </div>
 
           <div id='rest-info-con'>
