@@ -1,7 +1,4 @@
 <p align="center">
-<a href="https://cdn.discordapp.com/attachments/1154738995482329154/1162437439688822875/logo.png?ex=653bef3a&is=65297a3a&hm=51726b85c6da6e7302ac0b96700b20902404c4bfd65a72eae11d783c8a14df40&" target="_blank" rel="noopener noreferrer">
-
- </a>
 </p>
 
 <h3 align="center">Geo Forecast
@@ -15,22 +12,10 @@
     <br> 
 </p>
 
-## 📝 Table of Contents
-
-- [📝 Table of Contents](#-table-of-contents)
-- [🧐 About ](#-about-)
-- [🏁 Getting Started ](#-getting-started-)
-  - [Prerequisites](#prerequisites)
-  - [Installing:](#installing)
-- [🎈 Usage ](#-usage-)
-- [⛏️ Built Using ](#️-built-using-)
-- [User Story ](#user-story-)
-- [Data Flow ](#data-flow-)
-- [⚠️ Guided By ](#️-guided-by-)
 
 ## 🧐 About <a name = "about"></a>
 
-TINTIN is a strategic project designed to improve and expand the range of services offered to customers by an organization. The project aims to provide a seamless, efficient, and personalized experience to customers, ensuring their satisfaction and loyalty.
+website that shows you the daily weather conditions in addition to the following four days
 
 Project Objectives:
 
@@ -148,10 +133,9 @@ Landing Page :
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [PostgresDB](https://api.elephantsql.com/) - Database
-- [Express JS](https://expressjs.com/) - Server Framework
+
 - [React JS](https://https://reactjs.org/) - Web Library
-- [Node JS](https://nodejs.org/en/) - Server Environment
+
 
 ## User Story <a name = "#user_story"></a>
 
