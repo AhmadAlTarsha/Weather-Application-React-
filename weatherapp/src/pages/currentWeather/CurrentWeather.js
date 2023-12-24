@@ -8,9 +8,10 @@ import { AppContext } from '../../App';
 
 
 
+// this component represent all main page
 const CurrentWeather = () => {
+
   const [currentWeather, setCurrentWeather] = useState()
-  const [currentCity, setCurrentCity] = useState()
   const [forecast, setForecast] = useState()
 
   const getCurrentLocation = async () => {
@@ -21,17 +22,8 @@ const CurrentWeather = () => {
       );
     });
   }
-  const getForecast=async(currentCity)=>{
-   await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
-      console.log(res?.data?.forecast );
-      setForecast(res?.data?.forecast)
-    }).catch((err)=>{
-      console.log(err);
-    })
-
-  }
-
   const callAxios = async (lat, lang) => {
+   
 
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
 
@@ -40,25 +32,35 @@ const CurrentWeather = () => {
     
     try {
       const result = await axios.get(url)
-      setCurrentWeather(result.data)
-      console.log("RES ====> ", result);
+      setCurrentWeather(result?.data)
+     
+      
       getForecast(result?.data?.name)
-     // setCurrentCity(result?.data?.name)
-
-//     
-
-// setForecast(forecast.data)
+    
     } catch (error) {
-      console.error("ERROR ====> ", error.response);
+      console.log("ERROR ====> ", error);
     }
 
   }
+
+  const getForecast=async(currentCity)=>{
+   await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
+    
+      setForecast(res?.data?.forecast)
+    }).catch((err)=>{
+      console.error(err);
+    })
+
+  }
+
+
 
 
   useEffect(() => {
 
     getCurrentLocation()
       .then(async (position) => {
+    
         await callAxios(position?.coords?.latitude, position?.coords?.longitude)
 
       })
@@ -71,10 +73,10 @@ const CurrentWeather = () => {
 
   }, [])
 
-const createDayForecast=()=>{
- const day= forecast?.forecastday?.map((day)=>{
- return   <section className='forecast-day-info'>
-<h3>{day?.date}</h3><img src={`${day?.day?.condition?.icon}`}/><p>{`Max ${Math.round(day?.day?.maxtemp_c)
+const CreateDayForecast=()=>{
+ const day= forecast?.forecastday?.map((day,index)=>{
+ return   <section className='forecast-day-info' key={index}>
+<h4>{day?.date}</h4><img src={`${day?.day?.condition?.icon}`}/><p>{`Max ${Math.round(day?.day?.maxtemp_c)
 } °C / Min ${Math.round(day?.day?.mintemp_c)
 } °C `}</p>
     </section>
@@ -87,9 +89,10 @@ return day
   return (
     <div id="main-screen-con">
       <div id="all-info-con">
-
         <div id="current-weather-con">
+           <h2>current Weather</h2>
           <div id='current-location-image-con' >
+           
             <section id='temp-location'><h1>{currentWeather?.sys.country}
             </h1><h1>{currentWeather?.name}
             </h1><h1>{`${Math.round(currentWeather?.main?.temp)}°C`}</h1></section>
@@ -110,35 +113,15 @@ return day
               }</h3></section>
 
             </dvi>
-          </div>
-        </div>
+          </div >
+        </div >
         <div id="forecast-con">
-
-        {  createDayForecast()}
+<h3>Forecast next Days</h3>
+        {  CreateDayForecast()}
         </div>
 
 
 
-        {/* <h1 id="temperature">{Math.round(currentWeather?.main?.temp)}</h1>
-
-
-        <h1 id="currentLocation">{currentWeather?.sys.country}</h1>
-        <h3 id="currentCity">{currentWeather?.name}</h3>
-
-
-        <div id="H-W-C">
-
-          <section id="humidity">
-            <h1 id="humidityVal">{`${currentWeather?.main?.humidity}%`}</h1>
-            <h3 id="humidityWord">Humidity</h3>
-          </section>
-
-
-          <section id="wind">
-            <h1 id="windVal">{`${Math.round(currentWeather?.wind?.speed)} km/h`}</h1>
-            <h3 id="windWord">Wind Speed</h3>
-          </section>
-        </div> */}
       </div>
     </div>
   );

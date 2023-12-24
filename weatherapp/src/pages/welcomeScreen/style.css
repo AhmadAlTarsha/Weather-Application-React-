@@ -1,0 +1,49 @@
+
+body, h1, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+ 
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #3498db; 
+  }
+  
+  button {
+    background-color: #b12b2b;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #8b0808; 
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+ 
+  p {
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+  
+
+  .welcome-container {
+    padding: 20px;
+  }
+  
