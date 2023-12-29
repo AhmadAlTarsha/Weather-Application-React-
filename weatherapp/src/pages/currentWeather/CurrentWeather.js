@@ -6,11 +6,12 @@ import { MdOutlineDescription } from "react-icons/md";
 import { WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
 
 
+let url = `https://api.openweathermap.org/data/2.5/weather?lat=31.9896456&lon=35.8915085&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
 
 
 // this component represent all main page
 const CurrentWeather = () => {
-
+const [x,setx]=useState()
   const [currentWeather, setCurrentWeather] = useState()
   const [forecast, setForecast] = useState()
 
@@ -25,7 +26,7 @@ const CurrentWeather = () => {
 
   // call axios function
   const callAxios = async (lat, lang) => {
-   
+
 
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lang}&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
 
@@ -77,6 +78,12 @@ const CurrentWeather = () => {
 
 
   }, [])
+
+
+
+
+
+
 
 
   //this function to create next days container
