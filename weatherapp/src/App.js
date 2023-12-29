@@ -1,5 +1,6 @@
 
 import './App.css';
+import Loader from './pages/Loader/Loader';
 import CurrentWeather from './pages/currentWeather/CurrentWeather';
 import WelcomeScreen from './pages/welcomeScreen/Welcomscreen';
 import { createContext, useState } from "react";
@@ -15,6 +16,7 @@ function App() {
 <AppContext.Provider  >
      <Routes>
      <Route path="/" element={<WelcomeScreen />} />
+     
      <Route path="/main" element={<CurrentWeather />} />
      </Routes>
     </AppContext.Provider>

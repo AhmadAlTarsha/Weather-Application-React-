@@ -4,14 +4,15 @@ import "./style.css"
 import { FaTemperatureArrowUp, FaTemperatureArrowDown } from "react-icons/fa6"
 import { MdOutlineDescription } from "react-icons/md";
 import { WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
+import Loader from '../Loader/Loader';
 
 
-let url = `https://api.openweathermap.org/data/2.5/weather?lat=31.9896456&lon=35.8915085&appid=20df6ed2d3d499f39b1ec55b2f5a7406&units=metric`
+
 
 
 // this component represent all main page
 const CurrentWeather = () => {
-const [x,setx]=useState()
+const [loader,setLoader]=useState(true)
   const [currentWeather, setCurrentWeather] = useState()
   const [forecast, setForecast] = useState()
 
@@ -37,6 +38,9 @@ const [x,setx]=useState()
 
       const result = await axios.get(url)
       setCurrentWeather(result?.data)
+      if (result.data) {
+        setLoader(false)
+      }
      
       
       getForecast(result?.data?.name)
@@ -101,7 +105,7 @@ return day
 
 
   return (
-    <div id="main-screen-con">
+    <>{loader?<Loader/>: <div id="main-screen-con">
       <div id="all-info-con">
         <div id="current-weather-con">
            <h2>current Weather</h2>
@@ -137,7 +141,8 @@ return day
 
 
       </div>
-    </div>
+    </div>}</>
+   
   );
 };
 
