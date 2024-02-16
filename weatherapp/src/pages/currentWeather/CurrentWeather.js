@@ -5,6 +5,7 @@ import { FaTemperatureArrowUp, FaTemperatureArrowDown } from "react-icons/fa6"
 import { MdOutlineDescription } from "react-icons/md";
 import { WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
 import Loader from '../Loader/Loader';
+import F_Loader from '../forecastLoader/F_Loader';
 
 
 
@@ -13,17 +14,41 @@ import Loader from '../Loader/Loader';
 // this component represent all main page
 const CurrentWeather = () => {
 const [loader,setLoader]=useState(true)
+const [forecastLoader,setForecastLoader]=useState(true)
   const [currentWeather, setCurrentWeather] = useState()
   const [forecast, setForecast] = useState()
 
   const getCurrentLocation = async () => {
-    return await new Promise((resolve, reject) => {
+
+    try {
+      
+return await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (position) => resolve(position),
         (error) => reject(error)
       );
     });
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
+
+
+ //get forecast from external api 
+  const getForecast=async(currentCity)=>{
+  
+ await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
+    setForecastLoader(false)
+      setForecast(res?.data?.forecast)
+    }).catch((err)=>{
+      setForecastLoader(true)
+      console.error(err);
+    })
+
+  }
+
+
 
   // call axios function
   const callAxios = async (lat, lang) => {
@@ -40,28 +65,21 @@ const [loader,setLoader]=useState(true)
       setCurrentWeather(result?.data)
       if (result.data) {
         setLoader(false)
+      getForecast(result?.data?.name)  
+      
       }
      
       
-      getForecast(result?.data?.name)
+      
     
     } catch (error) {
-      console.log("ERROR ====> ", error);
+      console.log(`ERROR ====> ${ error}`);
     }
 
   }
 
 
-  //get forecast from external api 
-  const getForecast=async(currentCity)=>{
-   await  axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1612951226954bf0ada164306232012&q=${currentCity}&days=4&aqi=no&alerts=no`).then((res)=>{
-    
-      setForecast(res?.data?.forecast)
-    }).catch((err)=>{
-      console.error(err);
-    })
-
-  }
+ 
 
 
 
@@ -71,7 +89,7 @@ const [loader,setLoader]=useState(true)
     getCurrentLocation()
       .then(async (position) => {
     
-        await callAxios(position?.coords?.latitude, position?.coords?.longitude)
+        await callAxios(position?.coords?.latitude,position?.coords?.longitude)
 
       })
       .catch((error) => {
@@ -79,7 +97,9 @@ const [loader,setLoader]=useState(true)
       });
 
 
+   
 
+    
 
   }, [])
 
@@ -92,7 +112,11 @@ const [loader,setLoader]=useState(true)
 
   //this function to create next days container
 const CreateDayForecast=()=>{
+console.log(forecast);
+
+
  const day= forecast?.forecastday?.map((day,index)=>{
+  console.log(day);
  return   <section className='forecast-day-info' key={index}>
 <h4>{day?.date}</h4><img src={`${day?.day?.condition?.icon}`}/><p className='p'>{`Max ${Math.round(day?.day?.maxtemp_c)
 } °C / Min ${Math.round(day?.day?.mintemp_c)
@@ -135,7 +159,8 @@ return day
         </div >
         <div id="forecast-con">
 <h3>Forecast next Days</h3>
-        {  CreateDayForecast()}
+{forecastLoader?<div id='forecast-loader' >{ <F_Loader></F_Loader>}</div>:CreateDayForecast()}
+        
         </div>
 
 

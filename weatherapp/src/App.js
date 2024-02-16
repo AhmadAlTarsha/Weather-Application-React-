@@ -1,6 +1,5 @@
 
 import './App.css';
-import Loader from './pages/Loader/Loader';
 import CurrentWeather from './pages/currentWeather/CurrentWeather';
 import WelcomeScreen from './pages/welcomeScreen/Welcomscreen';
 import { createContext, useState } from "react";

@@ -1,5 +1,6 @@
+
+
 import React from 'react';
-import CurrentWeather from '../currentWeather/CurrentWeather';
 import { useNavigate } from 'react-router-dom';
 import "./style.css"
 
